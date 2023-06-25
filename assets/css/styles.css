@@ -208,7 +208,6 @@ body.dark-theme {
   font-size: 1.25rem;
   color: var(--title-color);
   transition: .3s;
-  margin-top: auto;
 }
 
 .profile__social-link:hover {
