@@ -461,6 +461,15 @@ svg:hover {
   align-items: center;
 }
 
+.projects__label {
+  display: flex;
+  align-items: center;
+}
+
+.projects__label i {
+  margin-left: 0.25rem;
+}
+
 @media screen and (max-width: 320px) {
   .container {
     margin-left: 1rem;
@@ -495,7 +504,6 @@ svg:hover {
 }
 
 @media screen and (min-width: 776px) {
-
   .projects__content,
   .skills__content {
     grid-template-columns: repeat(2, 332px);
