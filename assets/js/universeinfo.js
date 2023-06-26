@@ -1,11 +1,11 @@
 const games = [
     {
-        universeId: 2287245386,
+        placeId: 6229116934,
         onlineCountElementId: "hoopzOnlineCount",
         visitCountElementId: "hoopzVisitCount",
     },
     {
-        universeId: 4728255385,
+        placeId: 13615287854,
         onlineCountElementId: "climbingGameOnlineCount",
         visitCountElementId: "climbingGameVisitCount",
     }
@@ -23,19 +23,26 @@ function formatNumber(number) {
     return number.toLocaleString("en-US", { maximumFractionDigits: 1 }) + suffixes[suffixIndex] + " Plays";
 }
 
-async function updateUniverseInfo(universeId, onlineCountElement, visitCountElement) {
+async function getUniverseInfo(placeId, onlineCountElement, visitCountElement) {
     try {
-        const url = `https://games.roproxy.com/v1/games?universeIds=${universeId}`;
-        const response = await fetch(url);
-        const data = await response.json();
+        const universeResponse = await fetch(`https://apis.roproxy.com/universes/v1/places/${placeId}/universe`);
+        if (!universeResponse.ok) {
+            throw new Error(`[${universeResponse.status}] An error occurred while converting placeId to universeId | placeId: ${placeId}`);
+        }
 
-        if (response.status === 200) {
-            const { playing, visits } = data.data[0];
+        const { universeId } = await universeResponse.json();
 
+        const gamesResponse = await fetch(`https://games.roproxy.com/v1/games?universeIds=${universeId}`);
+        if (!gamesResponse.ok) {
+            throw new Error(`[${gamesResponse.status}] An error occurred with getUniverseInfo() | universeId: ${universeId}`);
+        }
+
+        const { data } = await gamesResponse.json();
+
+        if (data.length > 0) {
+            const { playing, visits } = data[0];
             animateOdometer(playing, onlineCountElement);
             visitCountElement.textContent = formatNumber(visits);
-        } else {
-            throw new Error(`[${response.status}] An error occurred with getUniverseInfo() | universeId: ${universeId}`);
         }
     } catch (error) {
         console.error(`Error fetching universe information: ${error.message}`);
@@ -53,11 +60,11 @@ function animateOdometer(targetNumber, element) {
 }
 
 function updateAllGamesInfo() {
-    games.forEach(async ({ universeId, onlineCountElementId, visitCountElementId }) => {
+    games.forEach(async ({ placeId, onlineCountElementId, visitCountElementId }) => {
         const onlineCountElement = document.getElementById(onlineCountElementId);
         const visitCountElement = document.getElementById(visitCountElementId);
 
-        await updateUniverseInfo(universeId, onlineCountElement, visitCountElement);
+        await getUniverseInfo(placeId, onlineCountElement, visitCountElement);
     });
 }
 
