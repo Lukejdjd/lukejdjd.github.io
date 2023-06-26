@@ -65,8 +65,16 @@ function updateUniverseInfo(placeId, onlineCountElement, visitCountElement) {
 
 // Define the place IDs and corresponding element IDs
 const games = [
-    { placeId: 6229116934, onlineCountElementId: "hoopzOnlineCount", visitCountElementId: "hoopzVisitCount" },
-    { placeId: 13615287854, onlineCountElementId: "climbingGameOnlineCount", visitCountElementId: "climbingGameVisitCount" },
+    {
+        placeId: 6229116934,
+        onlineCountElementId: "hoopzOnlineCount",
+        visitCountElementId: "hoopzVisitCount",
+    },
+    {
+        placeId: 13615287854,
+        onlineCountElementId: "climbingGameOnlineCount",
+        visitCountElementId: "climbingGameVisitCount",
+    }
 ];
 
 // Function to update game information for all games
