@@ -20,7 +20,12 @@ function formatNumber(number) {
         suffixIndex++;
     }
 
-    return number.toLocaleString("en-US", { maximumFractionDigits: 1 }) + suffixes[suffixIndex] + " Plays";
+    return number.toLocaleString("en-US", { maximumFractionDigits: 1 }) + suffixes[suffixIndex];
+}
+
+function hasSuffix(text) {
+    const suffixes = ["K", "M", "B", "T"];
+    return suffixes.some((suffix) => text.includes(suffix));
 }
 
 async function getUniverseInfo(placeId, onlineCountElement, visitCountElement) {
@@ -42,7 +47,14 @@ async function getUniverseInfo(placeId, onlineCountElement, visitCountElement) {
         if (data.length > 0) {
             const { playing, visits } = data[0];
             animateOdometer(playing, onlineCountElement);
+
             visitCountElement.textContent = formatNumber(visits);
+
+            const visitCountText = visitCountElement.textContent;
+            if (!hasSuffix(visitCountText)) {
+                visitCountElement.textContent = formatNumber(visits);
+                animateOdometer(visits, visitCountElement);
+            }
         }
     } catch (error) {
         console.error(`Error fetching universe information: ${error.message}`);
