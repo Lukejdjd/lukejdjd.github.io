@@ -50,9 +50,7 @@ async function getUniverseInfo(placeId, onlineCountElement, visitCountElement) {
 
             visitCountElement.textContent = formatNumber(visits);
 
-            const visitCountText = visitCountElement.textContent;
-            if (!hasSuffix(visitCountText)) {
-                visitCountElement.textContent = formatNumber(visits);
+            if (!hasSuffix(visitCountElement.textContent)) {
                 animateOdometer(visits, visitCountElement);
             }
         }
