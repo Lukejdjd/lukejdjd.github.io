@@ -107,7 +107,7 @@
                 <div class="projects__content grid filters__active" data-content id="projects">
                     <article class="projects__card">
                         <img src="assets/img/hoopz.png" alt="" class="projects__img">
-
+                    
                         <div class="projects__modal">
                             <div class="projects__content">
                                 <span class="projects__subtitle">Roblox Game</span>
@@ -120,21 +120,26 @@
                                     <div class="projects__labels">
                                         <div class="projects__label">
                                             <i class="ri-gamepad-line"></i>
-                                            <span id="hoopzOnlineCount"></span>
+                                            <div class="label-container">
+                                                <span id="hoopzOnlineCount"></span>
+                                                <span id="hoopzOnlineText">Online</span>
+                                            </div>
                                         </div>
                                         <div class="projects__label">
                                             <i class="ri-earth-line"></i>
-                                            <span id="hoopzVisitCount"></span>
+                                            <div class="label-container">
+                                                <span id="hoopzVisitCount"></span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </article>
-
+                    
                     <article class="projects__card">
                         <img src="assets/img/theclimbinggame.png" alt="" class="projects__img">
-
+                    
                         <div class="projects__modal">
                             <div class="projects__content">
                                 <span class="projects__subtitle">Roblox Game</span>
@@ -147,17 +152,22 @@
                                     <div class="projects__labels">
                                         <div class="projects__label">
                                             <i class="ri-gamepad-line"></i>
-                                            <span id="climbingGameOnlineCount"></span>
+                                            <div class="label-container">
+                                                <span id="climbingGameOnlineCount"></span>
+                                                <span id="climbingGameOnlineText">Online</span>
+                                            </div>
                                         </div>
                                         <div class="projects__label">
                                             <i class="ri-earth-line"></i>
-                                            <span id="climbingGameVisitCount"></span>
+                                            <div class="label-container">
+                                                <span id="climbingGameVisitCount"></span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </article>
+                    </article>                    
                 </div>
             </div>
 
@@ -242,6 +252,10 @@
 
     <!--=============== UNIVERSEINFO JS ===============-->
     <script src="assets/js/universeinfo.js"></script>
+
+    <!--=============== ODOMETER JS ===============-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/odometer.js/0.4.8/odometer.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/odometer.js/0.4.8/themes/odometer-theme-default.min.css" />
 </body>
 
 </html>
