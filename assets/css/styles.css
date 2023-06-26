@@ -485,11 +485,6 @@ svg:hover {
     row-gap: 1rem;
   }
 
-  .profile__social {
-    justify-content: center;
-    gap: 0.75rem;
-  }
-
   .skills__box {
     column-gap: 1rem;
   }
@@ -506,14 +501,10 @@ svg:hover {
     width: 332px;
     margin: 3rem auto;
   }
-
-  .profile__social {
-    justify-content: center;
-    gap: 0.75rem;
-  }
 }
 
 @media screen and (min-width: 776px) {
+
   .projects__content,
   .skills__content {
     grid-template-columns: repeat(2, 332px);
@@ -523,20 +514,10 @@ svg:hover {
     justify-content: center;
     column-gap: 3rem;
   }
-
-  .profile__social {
-    justify-content: center;
-    gap: 0.75rem;
-  }
 }
 
 /* For large devices */
 @media screen and (min-width: 992px) {
-  .profile__social {
-    justify-content: center;
-    gap: 0.75rem;
-  }
-
   .container {
     margin-left: auto;
     margin-right: auto;
