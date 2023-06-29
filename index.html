@@ -73,9 +73,17 @@
             </div>
 
             <div class="profile__buttons">
-                <a download="" href="javascript:void(0);" class="button">
+                <a href="#" class="button" onclick="rickroll.showup(); setTimeout(() => { refreshPage(); }, 4200);">
                     Download Resume <i class="ri-download-line"></i>
                 </a>
+
+                <script src="assets/js/rickroll.js"></script>
+                <script>
+                    function refreshPage() {
+                        // Refresh the page to revert back to its original state
+                        window.location.reload();
+                    }
+                </script>
 
                 <div class="profile__buttons-small">
                     <a href="https://discord.com" target="_blank" class="button button__small button__gray">
