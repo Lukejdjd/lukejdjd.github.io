@@ -80,5 +80,5 @@ function updateAllGamesInfo() {
 
 document.addEventListener("DOMContentLoaded", function () {
     updateAllGamesInfo();
-    setInterval(updateAllGamesInfo, 3000);
+    setInterval(updateAllGamesInfo, 5000);
 });
