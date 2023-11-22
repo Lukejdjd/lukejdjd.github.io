@@ -5,6 +5,11 @@ const games = [
         visitCountElementId: "hoopzVisitCount",
     },
     {
+        placeId: 14878098948,
+        onlineCountElementId: "ugcDontTalkOnlineCount",
+        visitCountElementId: "ugcDontTalkVisitCount",
+    },
+    {
         placeId: 13615287854,
         onlineCountElementId: "climbingGameOnlineCount",
         visitCountElementId: "climbingGameVisitCount",
@@ -68,7 +73,7 @@ function animateOdometer(targetNumber, element) {
 
     od.update(targetNumber);
 }
-
+    
 function updateAllGamesInfo() {
     games.forEach(async ({ placeId, onlineCountElementId, visitCountElementId }) => {
         const onlineCountElement = document.getElementById(onlineCountElementId);
