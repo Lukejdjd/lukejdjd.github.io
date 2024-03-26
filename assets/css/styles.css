@@ -159,32 +159,22 @@ body.dark-theme {
   text-align: center;
 }
 
-.profile__perfil {
+.profile__border {
+  display: grid;
+  place-items: center;
   width: 100px;
   height: 100px;
+  border-radius: 50%;
   background: linear-gradient(180deg,
       hsla(var(--hue), var(--sat), var(--lig), 1) 0%,
       hsla(var(--hue), var(--sat), var(--lig), .2) 100%);
-  border-radius: 50%;
-  overflow: hidden;
-  display: flex;
-  justify-content: center;
-}
-
-.profile__perfil img {
-  width: 75px;
-  object-fit: cover;
-}
-
-.profile__border {
   border: 3.5px solid var(--first-color);
   justify-self: center;
-  width: 115px;
-  height: 115px;
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
   margin-bottom: .75rem;
+}
+
+.profile__border img {
+  border-radius: 50%;
 }
 
 .profile__name {
@@ -551,15 +541,6 @@ svg:hover {
     width: 135px;
     height: 135px;
     margin-bottom: 1rem;
-  }
-
-  .profile__perfil {
-    width: 120px;
-    height: 120px;
-  }
-
-  .profile__perfil img {
-    width: 90px;
   }
 
   .profile__profession {
