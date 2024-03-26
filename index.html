@@ -346,7 +346,8 @@
                         (index % 2 === 0 ? topRow : bottomRow).appendChild(cardWrapper) :
                         (index < 2 ? topRow : bottomRow).appendChild(card);
                 });
-
+                
+                projectsContent.innerHTML = '';
                 projectsContent.appendChild(topRow);
                 projectsContent.appendChild(bottomRow);
             }
@@ -380,6 +381,11 @@
 
             // Rearrange the sorted games in the DOM
             rearrangeGames(sortedGames);
+
+            // Re-run the rearrangement logic when the window is resized
+            window.addEventListener('resize', function () {
+                rearrangeGames(sortedGames);
+            });
         });
     </script>
 
