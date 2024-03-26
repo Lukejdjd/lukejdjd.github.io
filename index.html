@@ -58,12 +58,13 @@
             </div>
 
             <div class="profile__info grid">
-                <div class="profile__info-group">
-                    <h3 class="profile__info-number">4</h3>
+                <div class="profile__info-group" id="yearsOfWorkGroup">
+                    <h3 class="profile__info-number" id="yearsOfWork">0</h3>
                     <p class="profile__info-description">
                         Years of <br> work
                     </p>
                 </div>
+                
                 <div class="profile__info-group" id="completedProjectsGroup">
                     <h3 class="profile__info-number" id="completedProjectsCount">0</h3>
                     <p class="profile__info-description">
@@ -327,29 +328,27 @@
                 });
             }
 
-            // Function to rearrange sorted games in the DOM
             function rearrangeGames(sortedGames) {
                 const projectsContent = document.querySelector('.projects__content');
+                const isSmallDevice = window.innerWidth <= 576;
                 const topRow = document.createElement('div');
                 const bottomRow = document.createElement('div');
-
-                // Add classes to the rows for styling
                 topRow.classList.add('top-row');
                 bottomRow.classList.add('bottom-row');
 
-                // Append the rows to the projects content
-                projectsContent.appendChild(topRow);
-                projectsContent.appendChild(bottomRow);
-
-                // Separate the games into top and bottom rows
                 sortedGames.forEach((game, index) => {
                     const card = document.getElementById(game.cardId);
-                    if (index < 2) {
-                        topRow.appendChild(card); // Add top row games
-                    } else {
-                        bottomRow.appendChild(card); // Add bottom row games
-                    }
+                    const cardWrapper = document.createElement('div');
+                    cardWrapper.classList.add('game-card-wrapper');
+                    cardWrapper.appendChild(card);
+
+                    isSmallDevice ?
+                        (index % 2 === 0 ? topRow : bottomRow).appendChild(cardWrapper) :
+                        (index < 2 ? topRow : bottomRow).appendChild(card);
                 });
+
+                projectsContent.appendChild(topRow);
+                projectsContent.appendChild(bottomRow);
             }
 
             // Define the games with their respective IDs
