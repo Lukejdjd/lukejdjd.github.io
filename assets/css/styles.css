@@ -335,6 +335,20 @@ svg:hover {
   height: 100%;
 }
 
+/* Style for the top row of game cards */
+.top-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 25px; /* Adjust the gap between game cards as needed */
+}
+
+/* Style for the bottom row of game cards */
+.bottom-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 25px; /* Adjust the gap between game cards as needed */
+}
+
 .projects__modal {
   position: absolute;
   width: 100%;
