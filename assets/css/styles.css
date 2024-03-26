@@ -543,6 +543,11 @@ svg:hover {
     margin-bottom: 1rem;
   }
 
+  .profile__perfil {
+    width: 120px;
+    height: 120px;
+  }
+
   .profile__profession {
     margin-bottom: 1.5rem;
   }
