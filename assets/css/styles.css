@@ -168,12 +168,12 @@ body.dark-theme {
   border-radius: 50%;
   overflow: hidden;
   display: flex;
-  align-items: flex-end;
   justify-content: center;
 }
 
 .profile__perfil img {
   width: 75px;
+  object-fit: cover;
 }
 
 .profile__border {
