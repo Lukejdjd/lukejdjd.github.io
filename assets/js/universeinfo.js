@@ -83,28 +83,21 @@ function updateAllGamesInfo() {
     games.forEach(async ({ placeId, onlineCountElementId, visitCountElementId }) => {
         const onlineCountElement = document.getElementById(onlineCountElementId);
         const visitCountElement = document.getElementById(visitCountElementId);
-
         await getUniverseInfo(placeId, onlineCountElement, visitCountElement);
     });
 }
 
-// Debounce function to delay function invocation
-function debounce(func, delay) {
+const debouncedUpdateAllGamesInfo = (func, delay) => {
     let timeoutId;
-    return function () {
-        const context = this;
-        const args = arguments;
+    return () => {
         clearTimeout(timeoutId);
-        timeoutId = setTimeout(() => {
-            func.apply(context, args);
-        }, delay);
+        timeoutId = setTimeout(() => func(), delay);
     };
-}
+};
 
-// Define a debounced version of the updateAllGamesInfo function with a delay of 5000 milliseconds (5 seconds)
-const debouncedUpdateAllGamesInfo = debounce(updateAllGamesInfo, 5000);
+const debouncedUpdate = debouncedUpdateAllGamesInfo(updateAllGamesInfo, 5000);
 
-document.addEventListener("DOMContentLoaded", function () {
-    debouncedUpdateAllGamesInfo(); // Call the debounced function initially
-    setInterval(debouncedUpdateAllGamesInfo, 5000); // Update every 5 seconds using the debounced function
+document.addEventListener("DOMContentLoaded", () => {
+    debouncedUpdate();
+    setInterval(debouncedUpdate, 5000);
 });
