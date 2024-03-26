@@ -74,3 +74,8 @@ function updateCompletedProjectsCount() {
 }
 
 updateCompletedProjectsCount();
+
+/*=============== YEARS OF WORK ===============*/
+const startingYear = 2020;
+const yearsOfWork = new Date().getFullYear() - startingYear;
+document.getElementById('yearsOfWork').textContent = yearsOfWork;
