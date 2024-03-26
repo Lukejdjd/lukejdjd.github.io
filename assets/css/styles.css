@@ -349,6 +349,13 @@ svg:hover {
   gap: 25px; /* Adjust the gap between game cards as needed */
 }
 
+/* Style for game card wrapper */
+.game-card-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 25px; /* Adjust the gap between game cards as needed */
+}
+
 .projects__modal {
   position: absolute;
   width: 100%;
