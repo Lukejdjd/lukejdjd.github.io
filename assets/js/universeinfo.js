@@ -5,6 +5,11 @@ const games = [
         visitCountElementId: "hoopzVisitCount",
     },
     {
+        placeId: 15564827526,
+        onlineCountElementId: "blockPuzzleOnlineCount",
+        visitCountElementId: "blockPuzzleVisitCount",
+    },
+    {
         placeId: 14878098948,
         onlineCountElementId: "ugcDontTalkOnlineCount",
         visitCountElementId: "ugcDontTalkVisitCount",
