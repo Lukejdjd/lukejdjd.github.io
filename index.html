@@ -113,7 +113,7 @@
             <div class="filters__sections">
                 <!--=============== PROJECTS ===============-->
                 <div class="projects__content grid filters__active" data-content id="projects">
-                    <article class="projects__card">
+                    <article class="projects__card" id="hoopzCard">
                         <img src="assets/img/hoopz.png" alt="" class="projects__img">
 
                         <div class="projects__modal">
@@ -146,7 +146,7 @@
                         </div>
                     </article>
 
-                    <article class="projects__card">
+                    <article class="projects__card" id="blockPuzzleCard">
                         <img src="assets/img/ugcdonttalk.png" alt="" class="projects__img">
 
                         <div class="projects__modal">
@@ -179,7 +179,40 @@
                         </div>
                     </article>
 
-                    <article class="projects__card">
+                    <article class="projects__card" id="ugcDontTalkCard">
+                        <img src="assets/img/blockpuzzle.png" alt="" class="projects__img">
+
+                        <div class="projects__modal">
+                            <div class="projects__content">
+                                <span class="projects__subtitle">Roblox Game</span>
+                                <h3 class="projects__title">Block Puzzle</h3>
+                                <div class="projects__details">
+                                    <a href="https://www.roblox.com/games/15564827526"
+                                        class="projects__button button button__small">
+                                        <i class="ri-link"></i>
+                                    </a>
+                                    <div class="projects__labels">
+                                        <div class="projects__label">
+                                            <i class="ri-gamepad-line"></i>
+                                            <div class="label-container">
+                                                <span id="blockPuzzleOnlineCount"></span>
+                                                <span id="blockPuzzleOnlineCount">Online</span>
+                                            </div>
+                                        </div>
+                                        <div class="projects__label">
+                                            <i class="ri-earth-line"></i>
+                                            <div class="label-container">
+                                                <span id="blockPuzzleVisitCount"></span>
+                                                <span id="blockPuzzleVisitText">Plays</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="projects__card" id="climbingGameCard">
                         <img src="assets/img/theclimbinggame.png" alt="" class="projects__img">
 
                         <div class="projects__modal">
@@ -279,6 +312,77 @@
             </div>
         </section>
     </main>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Function to sort games by online count (primary) and visit count (secondary)
+            function sortGamesByPerformance(games) {
+                return games.sort((a, b) => {
+                    const onlineCountComparison = parseInt(document.getElementById(b.onlineCountElementId).textContent) - parseInt(document.getElementById(a.onlineCountElementId).textContent);
+                    if (onlineCountComparison !== 0) {
+                        return onlineCountComparison;
+                    } else {
+                        return parseInt(document.getElementById(b.visitCountElementId).textContent) - parseInt(document.getElementById(a.visitCountElementId).textContent);
+                    }
+                });
+            }
+
+            // Function to rearrange sorted games in the DOM
+            function rearrangeGames(sortedGames) {
+                const projectsContent = document.querySelector('.projects__content');
+                const topRow = document.createElement('div');
+                const bottomRow = document.createElement('div');
+
+                // Add classes to the rows for styling
+                topRow.classList.add('top-row');
+                bottomRow.classList.add('bottom-row');
+
+                // Append the rows to the projects content
+                projectsContent.appendChild(topRow);
+                projectsContent.appendChild(bottomRow);
+
+                // Separate the games into top and bottom rows
+                sortedGames.forEach((game, index) => {
+                    const card = document.getElementById(game.cardId);
+                    if (index < 2) {
+                        topRow.appendChild(card); // Add top row games
+                    } else {
+                        bottomRow.appendChild(card); // Add bottom row games
+                    }
+                });
+            }
+
+            // Define the games with their respective IDs
+            const games = [
+                {
+                    cardId: "hoopzCard",
+                    onlineCountElementId: "hoopzOnlineCount",
+                    visitCountElementId: "hoopzVisitCount",
+                },
+                {
+                    cardId: "blockPuzzleCard",
+                    onlineCountElementId: "blockPuzzleOnlineCount",
+                    visitCountElementId: "blockPuzzleVisitCount",
+                },
+                {
+                    cardId: "ugcDontTalkCard",
+                    onlineCountElementId: "ugcDontTalkOnlineCount",
+                    visitCountElementId: "ugcDontTalkVisitCount",
+                },
+                {
+                    cardId: "climbingGameCard",
+                    onlineCountElementId: "climbingGameOnlineCount",
+                    visitCountElementId: "climbingGameVisitCount",
+                }
+            ];
+
+            // Sort the games by performance
+            const sortedGames = sortGamesByPerformance(games);
+
+            // Rearrange the sorted games in the DOM
+            rearrangeGames(sortedGames);
+        });
+    </script>
 
     <!--=============== FOOTER ===============-->
     <footer class="footer container">
