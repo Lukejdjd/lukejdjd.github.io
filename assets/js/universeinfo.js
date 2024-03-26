@@ -88,7 +88,23 @@ function updateAllGamesInfo() {
     });
 }
 
+// Debounce function to delay function invocation
+function debounce(func, delay) {
+    let timeoutId;
+    return function () {
+        const context = this;
+        const args = arguments;
+        clearTimeout(timeoutId);
+        timeoutId = setTimeout(() => {
+            func.apply(context, args);
+        }, delay);
+    };
+}
+
+// Define a debounced version of the updateAllGamesInfo function with a delay of 5000 milliseconds (5 seconds)
+const debouncedUpdateAllGamesInfo = debounce(updateAllGamesInfo, 5000);
+
 document.addEventListener("DOMContentLoaded", function () {
-    updateAllGamesInfo();
-    setInterval(updateAllGamesInfo, 5000);
+    debouncedUpdateAllGamesInfo(); // Call the debounced function initially
+    setInterval(debouncedUpdateAllGamesInfo, 5000); // Update every 5 seconds using the debounced function
 });
