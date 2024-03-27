@@ -475,10 +475,12 @@ svg:hover {
 .projects__label {
   display: flex;
   align-items: center;
+  margin-right: 1rem;
 }
 
 .projects__label i {
-  margin-left: 0.25rem;
+  margin-left: 0.5rem;
+  margin-right: 0.25rem;
 }
 
 @media screen and (max-width: 320px) {
