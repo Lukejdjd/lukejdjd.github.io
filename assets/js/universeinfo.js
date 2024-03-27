@@ -38,24 +38,29 @@ function hasSuffix(text) {
     return suffixes.some((suffix) => text.includes(suffix));
 }
 
-async function getUniverseInfo(placeId, onlineCountElement, visitCountElement) {
+async function getUniverseInfo(placeId, onlineCountElement, visitCountElement, cachedData) {
     try {
-        const universeResponse = await fetch(`https://apis.roproxy.com/universes/v1/places/${placeId}/universe`);
-        if (!universeResponse.ok) {
-            throw new Error(`[${universeResponse.status}] An error occurred while converting placeId to universeId | placeId: ${placeId}`);
+        let responseData;
+        if (cachedData) {
+            responseData = cachedData;
+        } else {
+            const universeResponse = await fetch(`https://apis.roproxy.com/universes/v1/places/${placeId}/universe`);
+            if (!universeResponse.ok) {
+                throw new Error(`[${universeResponse.status}] An error occurred while converting placeId to universeId | placeId: ${placeId}`);
+            }
+
+            const { universeId } = await universeResponse.json();
+
+            const gamesResponse = await fetch(`https://games.roproxy.com/v1/games?universeIds=${universeId}`);
+            if (!gamesResponse.ok) {
+                throw new Error(`[${gamesResponse.status}] An error occurred with getUniverseInfo() | universeId: ${universeId}`);
+            }
+
+            responseData = await gamesResponse.json();
         }
 
-        const { universeId } = await universeResponse.json();
-
-        const gamesResponse = await fetch(`https://games.roproxy.com/v1/games?universeIds=${universeId}`);
-        if (!gamesResponse.ok) {
-            throw new Error(`[${gamesResponse.status}] An error occurred with getUniverseInfo() | universeId: ${universeId}`);
-        }
-
-        const { data } = await gamesResponse.json();
-
-        if (data.length > 0) {
-            const { playing, visits } = data[0];
+        if (responseData && responseData.data.length > 0) {
+            const { playing, visits } = responseData.data[0];
             animateOdometer(playing, onlineCountElement);
 
             visitCountElement.textContent = formatNumber(visits);
