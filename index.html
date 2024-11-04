@@ -87,7 +87,7 @@
                 </script>
 
                 <div class="profile__buttons-small">
-                    <a href="https://discord.com/users/576527887138684928" target="_blank" class="button button__small button__gray">
+                    <a href="https://discord.com" target="_blank" class="button button__small button__gray">
                         <i class="ri-discord-line"></i>
                     </a>
                     <a href="https://twitter.com/robloxhoopz" target="_blank" class="button button__small button__gray">
@@ -113,7 +113,7 @@
 
             <div class="filters__sections">
                 <!--=============== PROJECTS ===============-->
-                <div class="projects__content grid filters__active" data-content id="projects">
+                <div class="projects__content grid filters__active" data-content id="projects" style="visibility: hidden;">
                     <article class="projects__card" id="hoopzCard">
                         <img src="assets/img/hoopz.png" alt="" class="projects__img">
 
@@ -316,16 +316,33 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-            // Function to sort games by online count (primary) and visit count (secondary)
+            // Function to sort games by playing count (primary) and visit count (secondary)
             function sortGamesByPerformance(games) {
-                return games.sort((a, b) => {
-                    const onlineCountComparison = parseInt(document.getElementById(b.onlineCountElementId).textContent) - parseInt(document.getElementById(a.onlineCountElementId).textContent);
-                    if (onlineCountComparison !== 0) {
-                        return onlineCountComparison;
+                // Sort games: first by playing count (descending), then by visits (descending)
+                const sortedGames = games.sort((a, b) => {
+                    const playingComparison = b.playing - a.playing; // Compare player counts
+                    if (playingComparison !== 0) {
+                        return playingComparison; // Sort by player count
                     } else {
-                        return parseInt(document.getElementById(b.visitCountElementId).textContent) - parseInt(document.getElementById(a.visitCountElementId).textContent);
+                        return b.visits - a.visits; // Sort by visits if player counts are equal
                     }
                 });
+
+                 // Swap the first and second game if there are at least 2
+                if (sortedGames.length > 1) {
+                    const temp0 = sortedGames[0]; 
+                    sortedGames[0] = sortedGames[1]; 
+                    sortedGames[1] = temp0; 
+                }
+
+                // Swap the first and third game if there are at least 3
+                if (sortedGames.length > 2) {
+                    const temp1 = sortedGames[0]; 
+                    sortedGames[0] = sortedGames[2]; 
+                    sortedGames[2] = temp1; 
+                }
+
+                return sortedGames;
             }
 
             function rearrangeGames(sortedGames) {
@@ -346,43 +363,23 @@
                         (index % 2 === 0 ? topRow : bottomRow).appendChild(cardWrapper) :
                         (index < 2 ? topRow : bottomRow).appendChild(card);
                 });
-                
+
                 projectsContent.innerHTML = '';
                 projectsContent.appendChild(topRow);
                 projectsContent.appendChild(bottomRow);
             }
 
-            // Define the games with their respective IDs
-            const games = [
-                {
-                    cardId: "hoopzCard",
-                    onlineCountElementId: "hoopzOnlineCount",
-                    visitCountElementId: "hoopzVisitCount",
-                },
-                {
-                    cardId: "blockPuzzleCard",
-                    onlineCountElementId: "blockPuzzleOnlineCount",
-                    visitCountElementId: "blockPuzzleVisitCount",
-                },
-                {
-                    cardId: "ugcDontTalkCard",
-                    onlineCountElementId: "ugcDontTalkOnlineCount",
-                    visitCountElementId: "ugcDontTalkVisitCount",
-                },
-                {
-                    cardId: "climbingGameCard",
-                    onlineCountElementId: "climbingGameOnlineCount",
-                    visitCountElementId: "climbingGameVisitCount",
-                }
-            ];
+            window.addEventListener('gamesUpdated', () => {
+                const sortedGames = sortGamesByPerformance(window.games);
+                rearrangeGames(sortedGames);
+                // Make the projects section visible
+                document.getElementById("projects").style.visibility = 'visible';
+            });
 
             // Sort the games by performance
-            const sortedGames = sortGamesByPerformance(games);
-
-            // Rearrange the sorted games in the DOM
+            const sortedGames = sortGamesByPerformance(window.games);
             rearrangeGames(sortedGames);
 
-            // Re-run the rearrangement logic when the window is resized
             window.addEventListener('resize', function () {
                 rearrangeGames(sortedGames);
             });
