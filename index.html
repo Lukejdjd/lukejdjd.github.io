@@ -113,7 +113,7 @@
 
             <div class="filters__sections">
                 <!--=============== PROJECTS ===============-->
-                <div class="projects__content grid filters__active" data-content id="projects" style="visibility: hidden;">
+                <div class="projects__content grid filters__active" data-content id="projects">
                     <article class="projects__card" id="hoopzCard">
                         <img src="assets/img/hoopz.png" alt="" class="projects__img">
 
@@ -372,12 +372,26 @@
             window.addEventListener('gamesUpdated', () => {
                 const sortedGames = sortGamesByPerformance(window.games);
                 rearrangeGames(sortedGames);
-                // Make the projects section visible
-                document.getElementById("projects").style.visibility = 'visible';
             });
 
-            // Sort the games by performance
-            const sortedGames = sortGamesByPerformance(window.games);
+            // Function to get the current order of games from the DOM
+            function getCurrentOrderFromDOM() {
+                const gameCards = document.querySelectorAll('.projects__card');
+                return Array.from(gameCards).map(card => card.id);
+            }
+
+            // Function to sort games by their current order in the DOM
+            function sortGamesByCurrentDOMOrder(games) {
+                const currentOrder = getCurrentOrderFromDOM();
+                return games.sort((a, b) => {
+                    const indexA = currentOrder.indexOf(a.id);
+                    const indexB = currentOrder.indexOf(b.id);
+                    return indexA - indexB; // Sort based on index
+                });
+            }
+
+            // Sort the games by their current order in the DOM
+            const sortedGames = sortGamesByCurrentDOMOrder(window.games);
             rearrangeGames(sortedGames);
 
             window.addEventListener('resize', function () {
