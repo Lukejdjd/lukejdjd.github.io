@@ -1,25 +1,41 @@
 const games = [
     {
         placeId: 6229116934,
+        cardId: "hoopzCard",
         onlineCountElementId: "hoopzOnlineCount",
         visitCountElementId: "hoopzVisitCount",
+        playing: 0,
+        visits: 0,
     },
     {
         placeId: 15564827526,
+        cardId: "blockPuzzleCard",
         onlineCountElementId: "blockPuzzleOnlineCount",
         visitCountElementId: "blockPuzzleVisitCount",
+        playing: 0,
+        visits: 0,
     },
     {
         placeId: 14878098948,
+        cardId: "ugcDontTalkCard",
         onlineCountElementId: "ugcDontTalkOnlineCount",
         visitCountElementId: "ugcDontTalkVisitCount",
+        playing: 0,
+        visits: 0,
     },
     {
         placeId: 13615287854,
+        cardId: "climbingGameCard",
         onlineCountElementId: "climbingGameOnlineCount",
         visitCountElementId: "climbingGameVisitCount",
+        playing: 0,
+        visits: 0,
     }
 ];
+
+
+// Expose the games variable to the window object
+window.games = games;
 
 function formatNumber(number) {
     const suffixes = ["", "K", "M", "B", "T"];
@@ -37,6 +53,9 @@ function hasSuffix(text) {
     const suffixes = ["K", "M", "B", "T"];
     return suffixes.some((suffix) => text.includes(suffix));
 }
+
+// Define a custom event name
+const gamesUpdatedEvent = new Event('gamesUpdated');
 
 async function getUniverseInfo(placeId, onlineCountElement, visitCountElement, cachedData) {
     try {
@@ -62,8 +81,17 @@ async function getUniverseInfo(placeId, onlineCountElement, visitCountElement, c
         if (responseData && responseData.data.length > 0) {
             const { playing, visits } = responseData.data[0];
             animateOdometer(playing, onlineCountElement);
-
             visitCountElement.textContent = formatNumber(visits);
+
+            // Update the game data
+            const gameIndex = games.findIndex(game => game.placeId === placeId);
+            if (gameIndex !== -1) {
+                games[gameIndex].playing = playing;
+                games[gameIndex].visits = visits;
+
+                // Dispatch the event after updating the games array
+                window.dispatchEvent(gamesUpdatedEvent);
+            }
 
             if (!hasSuffix(visitCountElement.textContent)) {
                 animateOdometer(visits, visitCountElement);
