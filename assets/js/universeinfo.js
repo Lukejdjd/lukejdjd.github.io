@@ -23,7 +23,7 @@ const games = [
         thumbnailUrl: "",
         backupThumbnailUrl: "assets/blockpuzle.png",
     },
-    {
+    /*{
         placeId: 14878098948,
         universeId: 5126127183,
         cardId: "ugcDontTalkCard",
@@ -46,7 +46,7 @@ const games = [
         visits: 0,
         thumbnailUrl: "",
         backupThumbnailUrl: "assets/theclimbinggame.png",
-    }
+    }*/
 ];
 
 function formatNumber(number) {
