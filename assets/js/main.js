@@ -8,48 +8,101 @@ const darkTheme = "dark-theme";
 const iconTheme = "ri-sun-line";
 
 const selectedTheme = localStorage.getItem("selected-theme");
-const selectedIcon = localStorage.getItem("selected-icon");
+
+const systemTheme = window.matchMedia(
+    "(prefers-color-scheme: dark)"
+);
 
 const getCurrentTheme = () =>
     document.body.classList.contains(darkTheme)
         ? "dark"
         : "light";
 
-const getCurrentIcon = () =>
-    themeButton?.classList.contains(iconTheme)
-        ? "ri-moon-fill"
-        : "ri-sun-fill";
 
-if (selectedTheme) {
-    document.body.classList[
-        selectedTheme === "dark"
-            ? "add"
-            : "remove"
-    ](darkTheme);
+function applyTheme(theme) {
+    const isDark =
+        theme === "dark";
+
+    document.body.classList.toggle(
+        darkTheme,
+        isDark
+    );
 
     if (themeButton) {
-        themeButton.classList[
-            selectedIcon === "ri-moon-fill"
-                ? "add"
-                : "remove"
-        ](iconTheme);
+        themeButton.classList.toggle(
+            iconTheme,
+            isDark
+        );
     }
 }
 
-themeButton?.addEventListener("click", () => {
-    document.body.classList.toggle(darkTheme);
-    themeButton.classList.toggle(iconTheme);
 
-    localStorage.setItem(
-        "selected-theme",
-        getCurrentTheme()
-    );
+/*
+   If the user already chose a theme,
+   use that saved choice.
 
-    localStorage.setItem(
-        "selected-icon",
-        getCurrentIcon()
+   Otherwise follow their system theme.
+*/
+
+if (selectedTheme) {
+    applyTheme(selectedTheme);
+} else {
+    applyTheme(
+        systemTheme.matches
+            ? "dark"
+            : "light"
     );
-});
+}
+
+
+/*
+   If no manual theme has been selected,
+   automatically follow system changes.
+*/
+
+systemTheme.addEventListener(
+    "change",
+    event => {
+        if (
+            localStorage.getItem(
+                "selected-theme"
+            )
+        ) {
+            return;
+        }
+
+        applyTheme(
+            event.matches
+                ? "dark"
+                : "light"
+        );
+    }
+);
+
+
+/*
+   Manual theme toggle.
+
+   Once clicked, the user's choice
+   overrides the system theme.
+*/
+
+themeButton?.addEventListener(
+    "click",
+    () => {
+        const nextTheme =
+            getCurrentTheme() === "dark"
+                ? "light"
+                : "dark";
+
+        applyTheme(nextTheme);
+
+        localStorage.setItem(
+            "selected-theme",
+            nextTheme
+        );
+    }
+);
 
 
 /* =========================================================
