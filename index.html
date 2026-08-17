@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--=============== FAVICON ===============-->
+    <link rel="shortcut icon" href="assets/img/jd.png" type="image/x-icon">
+
+    <!--=============== REMIX ICONS ===============-->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+
+    <!--=============== CSS ===============-->
+    <link rel="stylesheet" href="assets/css/styles.css">
+
+    <title>Portfolio website</title>
+</head>
+
+<body>
+    <header class="profile container">
+        <!-- Theme button -->
+        <i class="ri-moon-line change-theme" id="theme-button"></i>
+
+        <div class="profile__container grid">
+            <div class="profile__data">
+                <div class="profile__border">
+                    <img src="assets/img/lukejdjd.png" alt="">
+                    <div class="profile__perfil">
+                    </div>
+                </div>
+
+                <h2 class="profile__name">Lukejdjd</h2>
+                <h3 class="profile__profession">Developer</h3>
+
+                <ul class="profile__social">
+                    <a href="https://roblox.com/users/1111528852/profile" target="_blank"
+                        class="profile__social-link">
+                        <div>
+                            <svg>
+                                <use xlink:href="#roblox" />
+                            </svg>
+                        </div>
+
+                        <svg display="none" style="color: #22272B;">
+                            <symbol width="21" height="21" viewBox="0 0 24 24" id="roblox">
+                                <path fill="currentColor"
+                                    d="m6.9 2.7q0-0.2 0.2-0.3 0.1-0.2 0.3-0.3 0.2-0.1 0.4-0.1 0.2 0 0.4 0.1l13.1 4.8q0.2 0 0.3 0.2 0.2 0.1 0.3 0.3 0.1 0.2 0.1 0.4 0 0.2-0.1 0.4l-4.8 13.1q0 0.2-0.2 0.3-0.1 0.2-0.3 0.3-0.2 0.1-0.4 0.1-0.2 0-0.4-0.1l-13.1-4.8q-0.2 0-0.3-0.2-0.2-0.1-0.3-0.3-0.1-0.2-0.1-0.4 0-0.2 0.1-0.4zm1.5 1.7l-4.1 11.2 11.3 4.1 4.1-11.2z" />
+                                <path fill="currentColor" fill-rule="evenodd" class="a"
+                                    d="m9.6 8.5q0-0.2 0.2-0.4 0.1-0.1 0.3-0.2 0.2-0.1 0.4-0.1 0.2 0 0.3 0.1l4.7 1.7q0.2 0 0.4 0.2 0.1 0.1 0.2 0.3 0.1 0.2 0.1 0.4 0 0.2-0.1 0.3l-1.7 4.7q0 0.2-0.2 0.4-0.1 0.1-0.3 0.2-0.2 0.1-0.4 0.1-0.2 0-0.3-0.1l-4.7-1.7q-0.2 0-0.4-0.2-0.1-0.1-0.2-0.3-0.1-0.2-0.1-0.4 0-0.2 0.1-0.3zm1.5 1.6l-1 2.8 2.8 1 1-2.8z" />
+                            </symbol>
+                        </svg>
+                    </a>
+                    <a href="https://github.com/Lukejdjd" target="_blank" class="profile__social-link">
+                        <i class="ri-github-line"></i>
+                    </a>
+                </ul>
+            </div>
+
+            <div class="profile__info grid">
+                <div class="profile__info-group" id="yearsOfWorkGroup">
+                    <h3 class="profile__info-number" id="yearsOfWork">0</h3>
+                    <p class="profile__info-description">
+                        Years of <br> work
+                    </p>
+                </div>
+                
+                <div class="profile__info-group" id="completedProjectsGroup">
+                    <h3 class="profile__info-number" id="completedProjectsCount">0</h3>
+                    <p class="profile__info-description">
+                        Completed <br> projects
+                    </p>
+                </div>                
+            </div>
+
+            <div class="profile__buttons">
+                <a href="#" class="button" onclick="rickroll.showup(); setTimeout(() => { refreshPage(); }, 7500);">
+                    Download Resume <i class="ri-download-line"></i>
+                </a>
+
+                <script src="assets/js/rickroll.js"></script>
+                <script>
+                    function refreshPage() {
+                        // Refresh the page to revert back to its original state
+                        window.location.reload();
+                    }
+                </script>
+
+                <div class="profile__buttons-small">
+                    <a href="https://discord.com" target="_blank" class="button button__small button__gray">
+                        <i class="ri-discord-line"></i>
+                    </a>
+                    <a href="https://twitter.com/robloxhoopz" target="_blank" class="button button__small button__gray">
+                        <i class="ri-twitter-line"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!--=============== MAIN ===============-->
+    <main class="main">
+        <section class="filters container">
+            <!--=============== FILTERS TABS ===============-->
+            <ul class="filters__content">
+                <button class="filters__button filter-tab-active" data-target="#projects">
+                    Projects
+                </button>
+                <button class="filters__button" data-target="#skills">
+                    Skills
+                </button>
+            </ul>
+
+            <div class="filters__sections">
+                <!--=============== PROJECTS ===============-->
+                <div class="projects__content grid filters__active" data-content id="projects">
+                    <article class="projects__card" id="hoopzCard">
+                        <img src="" alt="Hoopz" id="hoopzThumbnail" class="projects__img">
+                        
+                        <div class="projects__modal">
+                            <div class="projects__content">
+                                <span class="projects__subtitle">Roblox Game</span>
+                                <h3 class="projects__title">Hoopz</h3>
+                                <div class="projects__details">
+                                    <a href="https://roblox.com/games/6229116934"
+                                        class="projects__button button button__small">
+                                        <i class="ri-link"></i>
+                                    </a>
+                                    <div class="projects__labels">
+                                        <div class="projects__label">
+                                            <i class="ri-gamepad-line"></i>
+                                            <div class="label-container">
+                                                <span id="hoopzOnlineCount"></span>
+                                                <span id="hoopzOnlineText">Online</span>
+                                            </div>
+                                        </div>
+                                        <div class="projects__label">
+                                            <i class="ri-earth-line"></i>
+                                            <div class="label-container">
+                                                <span id="hoopzVisitCount"></span>
+                                                <span id="hoopzVisitText">Plays</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="projects__card" id="blockPuzzleCard">
+                        <img src="" alt="Block Puzzle" id="blockPuzzleThumbnail" class="projects__img">
+
+                        <div class="projects__modal">
+                            <div class="projects__content">
+                                <span class="projects__subtitle">Roblox Game</span>
+                                <h3 class="projects__title">Block Puzzle</h3>
+                                <div class="projects__details">
+                                    <a href="https://www.roblox.com/games/15564827526"
+                                        class="projects__button button button__small">
+                                        <i class="ri-link"></i>
+                                    </a>
+                                    <div class="projects__labels">
+                                        <div class="projects__label">
+                                            <i class="ri-gamepad-line"></i>
+                                            <div class="label-container">
+                                                <span id="blockPuzzleOnlineCount"></span>
+                                                <span id="blockPuzzleOnlineCount">Online</span>
+                                            </div>
+                                        </div>
+                                        <div class="projects__label">
+                                            <i class="ri-earth-line"></i>
+                                            <div class="label-container">
+                                                <span id="blockPuzzleVisitCount"></span>
+                                                <span id="blockPuzzleVisitText">Plays</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- <article class="projects__card" id="ugcDontTalkCard">
+                        <img src="" alt="UGC Don't Talk" id="ugcDontTalkThumbnail" class="projects__img">
+
+                        <div class="projects__modal">
+                            <div class="projects__content">
+                                <span class="projects__subtitle">Roblox Game</span>
+                                <h3 class="projects__title">UGC Don't Talk</h3>
+                                <div class="projects__details">
+                                    <a href="https://www.roblox.com/games/14878098948"
+                                        class="projects__button button button__small">
+                                        <i class="ri-link"></i>
+                                    </a>
+                                    <div class="projects__labels">
+                                        <div class="projects__label">
+                                            <i class="ri-gamepad-line"></i>
+                                            <div class="label-container">
+                                                <span id="ugcDontTalkOnlineCount"></span>
+                                                <span id="ugcDontTalkOnlineCount">Online</span>
+                                            </div>
+                                        </div>
+                                        <div class="projects__label">
+                                            <i class="ri-earth-line"></i>
+                                            <div class="label-container">
+                                                <span id="ugcDontTalkVisitCount"></span>
+                                                <span id="ugcDontTalkVisitText">Plays</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </article> -->
+
+                    <!-- <article class="projects__card" id="climbingGameCard">
+                        <img src="" alt="The Climbing Game" id="climbingGameThumbnail" class="projects__img">
+
+                        <div class="projects__modal">
+                            <div class="projects__content">
+                                <span class="projects__subtitle">Roblox Game</span>
+                                <h3 class="projects__title">The Climbing Game</h3>
+                                <div class="projects__details">
+                                    <a href="https://roblox.com/games/13615287854"
+                                        class="projects__button button button__small">
+                                        <i class="ri-link"></i>
+                                    </a>
+                                    <div class="projects__labels">
+                                        <div class="projects__label">
+                                            <i class="ri-gamepad-line"></i>
+                                            <div class="label-container">
+                                                <span id="climbingGameOnlineCount"></span>
+                                                <span id="climbingGameOnlineText">Online</span>
+                                            </div>
+                                        </div>
+                                        <div class="projects__label">
+                                            <i class="ri-earth-line"></i>
+                                            <div class="label-container">
+                                                <span id="climbingGameVisitCount"></span>
+                                                <span id="climbingGameVisitText">Plays</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </article> -->
+                </div>
+            </div>
+
+            <!--=============== SKILLS ===============-->
+            <div class="skills__content grid" data-content id="skills">
+                <div class="skills__area">
+                    <h3 class="skills__title">Frontend Developer</h3>
+
+                    <div class="skills__box">
+                        <div class="skills__group">
+                            <div class="skills__data">
+                                <i class="ri-checkbox-circle-line"></i>
+
+                                <div>
+                                    <h3 class="skills__name">HTML</h3>
+                                    <span class="skills__level">Basic</span>
+                                </div>
+                            </div>
+
+                            <div class="skills__data">
+                                <i class="ri-checkbox-circle-line"></i>
+
+                                <div>
+                                    <h3 class="skills__name">CSS</h3>
+                                    <span class="skills__level">Basic</span>
+                                </div>
+                            </div>
+
+                            <div class="skills__data">
+                                <i class="ri-checkbox-circle-line"></i>
+
+                                <div>
+                                    <h3 class="skills__name">JavaScript</h3>
+                                    <span class="skills__level">Intermediate</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skills__area">
+                    <h3 class="skills__title">Backend Developer</h3>
+
+                    <div class="skills__box">
+                        <div class="skills__group">
+                            <div class="skills__data">
+                                <i class="ri-checkbox-circle-line"></i>
+
+                                <div>
+                                    <h3 class="skills__name">Luau</h3>
+                                    <span class="skills__level">Advanced</span>
+                                </div>
+                            </div>
+
+                            <div class="skills__data">
+                                <i class="ri-checkbox-circle-line"></i>
+
+                                <div>
+                                    <h3 class="skills__name">Python</h3>
+                                    <span class="skills__level">Intermediate</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!--=============== FOOTER ===============-->
+    <footer class="footer container">
+        <span class="footer__copy">
+            &#169; All rights reserved
+        </span>
+    </footer>
+
+    <!--=============== SCROLLREVEAL ===============-->
+    <script src="assets/js/scrollreveal.min.js"></script>
+
+    <!--=============== MAIN JS ===============-->
+    <script src="assets/js/main.js"></script>
+
+    <!--=============== UNIVERSEINFO JS ===============-->
+    <script src="assets/js/universeinfo.js"></script>
+
+    <!--=============== ODOMETER JS ===============-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/odometer.js/0.4.8/odometer.min.js"></script>
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/odometer.js/0.4.8/themes/odometer-theme-default.min.css" />
+</body>
+
+</html>
