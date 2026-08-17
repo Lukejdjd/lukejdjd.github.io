@@ -341,9 +341,8 @@ document
 if (typeof ScrollReveal !== "undefined") {
 
     /*
-       Keep the old website's stronger staged reveal,
-       while cleaning each element after its first animation
-       so dynamic updates cannot make it pop again.
+       Faster scroll reveals while keeping
+       the hero entrance slightly more staged.
     */
 
     const pageLoadedWithHash =
@@ -352,9 +351,9 @@ if (typeof ScrollReveal !== "undefined") {
     const sr =
         ScrollReveal({
             origin: "top",
-            distance: "48px",
-            duration: 1400,
-            delay: 150,
+            distance: "32px",
+            duration: 700,
+            delay: 0,
             opacity: 0,
             scale: 1,
 
@@ -362,7 +361,7 @@ if (typeof ScrollReveal !== "undefined") {
                 "cubic-bezier(0.22, 1, 0.36, 1)",
 
             reset: false,
-            viewFactor: 0.08
+            viewFactor: 0.05
         });
 
 
@@ -425,25 +424,17 @@ if (typeof ScrollReveal !== "undefined") {
        ===================================================== */
 
     /*
-       Reveal order:
-
-       1. Avatar
-       2. Developer / Game Creator
-       3. Luke
-       4. @Iukejdjd
-       5. Description
-       6. Socials
-       7. Buttons
-       8. Stats
+       Keep the page-load hero animation
+       slightly more staged than scroll content.
     */
-
 
     /* 1 — AVATAR */
 
     revealOnce(
         ".profile__border",
         {
-            delay: 200
+            delay: 120,
+            duration: 850
         }
     );
 
@@ -453,7 +444,8 @@ if (typeof ScrollReveal !== "undefined") {
     revealOnce(
         ".eyebrow",
         {
-            delay: 275
+            delay: 180,
+            duration: 850
         }
     );
 
@@ -463,7 +455,8 @@ if (typeof ScrollReveal !== "undefined") {
     revealOnce(
         ".profile__name-row",
         {
-            delay: 350
+            delay: 240,
+            duration: 850
         }
     );
 
@@ -473,7 +466,8 @@ if (typeof ScrollReveal !== "undefined") {
     revealOnce(
         ".profile__username",
         {
-            delay: 425
+            delay: 300,
+            duration: 850
         }
     );
 
@@ -483,7 +477,8 @@ if (typeof ScrollReveal !== "undefined") {
     revealOnce(
         ".profile__profession",
         {
-            delay: 500
+            delay: 360,
+            duration: 850
         }
     );
 
@@ -493,7 +488,8 @@ if (typeof ScrollReveal !== "undefined") {
     revealOnce(
         ".profile__social",
         {
-            delay: 575
+            delay: 420,
+            duration: 850
         }
     );
 
@@ -503,7 +499,8 @@ if (typeof ScrollReveal !== "undefined") {
     revealOnce(
         ".profile__buttons",
         {
-            delay: 650
+            delay: 480,
+            duration: 850
         }
     );
 
@@ -513,8 +510,9 @@ if (typeof ScrollReveal !== "undefined") {
     revealOnce(
         ".profile__info-group",
         {
-            interval: 120,
-            delay: 725
+            interval: 80,
+            delay: 540,
+            duration: 850
         }
     );
 
@@ -526,7 +524,7 @@ if (typeof ScrollReveal !== "undefined") {
     revealOnce(
         "#work .section__heading",
         {
-            delay: 300
+            delay: 60
         }
     );
 
@@ -548,7 +546,7 @@ if (typeof ScrollReveal !== "undefined") {
         revealOnce(
             "#work .live-player-strip",
             {
-                delay: 400
+                delay: 100
             }
         );
 
@@ -558,8 +556,8 @@ if (typeof ScrollReveal !== "undefined") {
         revealOnce(
             "#work .projects__card",
             {
-                interval: 180,
-                delay: 500
+                interval: 90,
+                delay: 140
             }
         );
     }
@@ -601,7 +599,7 @@ if (typeof ScrollReveal !== "undefined") {
     revealOnce(
         "#activity .section__heading",
         {
-            delay: 300
+            delay: 60
         }
     );
 
@@ -619,7 +617,7 @@ if (typeof ScrollReveal !== "undefined") {
         revealOnce(
             "#activity .activity-card",
             {
-                delay: 450
+                delay: 120
             }
         );
     }
@@ -660,7 +658,7 @@ if (typeof ScrollReveal !== "undefined") {
     revealOnce(
         "#projects-public .section__heading",
         {
-            delay: 300
+            delay: 60
         }
     );
 
@@ -668,8 +666,8 @@ if (typeof ScrollReveal !== "undefined") {
     revealOnce(
         "#projects-public .repo-row",
         {
-            interval: 120,
-            delay: 400
+            interval: 70,
+            delay: 100
         }
     );
 
@@ -681,7 +679,7 @@ if (typeof ScrollReveal !== "undefined") {
     revealOnce(
         "#skills .section__heading",
         {
-            delay: 300
+            delay: 60
         }
     );
 
@@ -689,8 +687,8 @@ if (typeof ScrollReveal !== "undefined") {
     revealOnce(
         "#skills .skills__area",
         {
-            interval: 140,
-            delay: 400
+            interval: 80,
+            delay: 100
         }
     );
 
@@ -702,7 +700,7 @@ if (typeof ScrollReveal !== "undefined") {
     revealOnce(
         ".quote-strip",
         {
-            delay: 300
+            delay: 60
         }
     );
 
@@ -714,7 +712,7 @@ if (typeof ScrollReveal !== "undefined") {
     revealOnce(
         ".footer",
         {
-            delay: 350
+            delay: 80
         }
     );
 }
