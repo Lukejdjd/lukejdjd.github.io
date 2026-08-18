@@ -224,11 +224,9 @@ function updateTotalPlayers() {
             "totalPlayersOnline"
         );
 
-
     if (!element) {
         return;
     }
-
 
     const total =
         games.reduce(
@@ -243,13 +241,10 @@ function updateTotalPlayers() {
             0
         );
 
-
-    setTextIfChanged(
+    updatePlayerNumber(
         element,
-
-        total.toLocaleString(
-            "en-US"
-        )
+        total,
+        !initialStatsLoaded
     );
 }
 
